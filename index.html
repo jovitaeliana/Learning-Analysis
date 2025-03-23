@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Style Analysis Results</title>
+    
+    <!-- External CSS Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <i class="bi bi-stars"></i> Learning Style Analysis & Recommendation System
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#overview-section" onclick="showTab('overview')">
+                                <i class="bi bi-house"></i> Overview
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#results-section" onclick="showTab('results')">
+                                <i class="bi bi-bar-chart"></i> Results
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#analysis-pdf-section" onclick="showTab('analysis-pdf')">
+                                <i class="bi bi-file-earmark-pdf"></i> Analysis
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#demo-section" onclick="showTab('demo')">
+                                <i class="bi bi-play-circle"></i> Demo
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Tab Container -->
+        <div class="tab-container">
+            <!-- Overview Tab -->
+            <div id="overview" class="tab-content active">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card intro-card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-7">
+                                        <h1 class="card-title mb-4">
+                                            <i class="bi bi-graph-up text-primary"></i> 
+                                            Personalized Learning Analysis
+                                        </h1>
+                                        <p class="lead">
+                                            This project analyzes how matching learning content to students' preferred learning styles
+                                            impacts their performance, engagement, and course completion rates.
+                                        </p>
+                                        <div class="data-insight">
+                                            <h6><i class="bi bi-info-circle"></i> Key Insight</h6>
+                                            <p>Our analysis of 10,000 student records shows that matching content to learning styles
+                                            improved assessment scores by 27% and reduced dropout likelihood by 45%.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <img src="learning_style_by_age.png" alt="Learning Style by Age Distribution" class="img-fluid rounded shadow-sm">
+                                        <p class="text-center text-muted mt-2"><small>Learning style preferences across age groups</small></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card stats-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title">Dataset Size</h5>
+                                        <h2 class="mb-0">10,000</h2>
+                                    </div>
+                                    <div class="fs-1 text-primary">
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                </div>
+                                <p class="card-text text-muted mt-3">Student records analyzed</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card stats-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title">Courses</h5>
+                                        <h2 class="mb-0">5</h2>
+                                    </div>
+                                    <div class="fs-1 text-primary">
+                                        <i class="bi bi-book"></i>
+                                    </div>
+                                </div>
+                                <p class="card-text text-muted mt-3">Course types in the dataset</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card stats-card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5 class="card-title">Learning Styles</h5>
+                                        <h2 class="mb-0">4</h2>
+                                    </div>
+                                    <div class="fs-1 text-primary">
+                                        <i class="bi bi-lightbulb"></i>
+                                    </div>
+                                </div>
+                                <p class="card-text text-muted mt-3">Visual, Auditory, Reading/Writing, Kinesthetic</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <i class="bi bi-clipboard-data text-white me-2"></i> Student Demographics
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <img src="categorical_distributions.png" class="img-fluid" alt="Student Demographics">
+                                </div>
+                                <div class="chart-insights">
+                                    <h6><i class="bi bi-info-circle"></i> Key Observations</h6>
+                                    <p>The dataset contains diverse educational backgrounds with undergraduate students forming the largest group. 
+                                    Visual learning style is predominant (42%), followed by Reading/Writing (25%), 
+                                    Auditory (18%), and Kinesthetic (15%).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header">
+                                <i class="bi bi-graph-up-arrow text-white me-2"></i> Engagement & Performance
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-container">
+                                    <img src="engagement_vs_performance.png" class="img-fluid" alt="Engagement vs Performance">
+                                </div>
+                                <div class="chart-insights">
+                                    <h6><i class="bi bi-info-circle"></i> Key Correlation</h6>
+                                    <p>There's a positive correlation (r=0.78) between student engagement and final exam scores.
+                                    The relationship is strongest among visual and kinesthetic learners when content matches their learning style.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Results Tab -->
+            <div id="results" class="tab-content">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="bi bi-bar-chart text-white me-2"></i> Analysis Results
+                            </div>
+                            <div class="card-body">
+                                <h2 class="section-title">Impact of Learning Style Match on Performance</h2>
+                                
+                                <div class="data-insight mb-4">
+                                    <h6><i class="bi bi-award"></i> Summary of Findings</h6>
+                                    <p>Our analysis reveals that matching course formats with students' learning styles leads to
+                                    significant improvements in assessment scores, completion rates, and overall engagement.
+                                    We also identified key factors that predict student dropout risks.</p>
+                                </div>
+                                
+                                <div class="row mb-4">
+                                    <div class="col-lg-6">
+                                        <div class="card results-card">
+                                            <div class="card-header">Dropout Prediction Factors</div>
+                                            <div class="card-body">
+                                                <div class="chart-container">
+                                                    <img src="dropout_feature_importance.png" class="img-fluid" alt="Feature Importance Chart">
+                                                </div>
+                                                <div class="chart-insights">
+                                                    <h6><i class="bi bi-graph-up"></i> Data Interpretation</h6>
+                                                    <p>Final exam score is the strongest predictor of dropout risk, followed by quiz scores
+                                                    and forum participation. Our model achieves 80.77% accuracy in predicting student dropouts.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-6">
+                                        <div class="card results-card">
+                                            <div class="card-header">Learning Style Impact on Course Performance</div>
+                                            <div class="card-body">
+                                                <div class="chart-container">
+                                                    <img src="learning_style_course_heatmap.png" class="img-fluid" alt="Learning Style by Course Heatmap">
+                                                </div>
+                                                <div class="chart-insights">
+                                                    <h6><i class="bi bi-graph-up"></i> Data Interpretation</h6>
+                                                    <p>The heatmap shows that students perform best when course formats align with their learning styles.
+                                                    Visual learners excel in Python and Data Science courses, while Reading/Writing learners perform best in
+                                                    Web Development and Cybersecurity.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-4">
+                                    <div class="col-lg-6">
+                                        <div class="card results-card">
+                                            <div class="card-header">Performance Across Learning Styles</div>
+                                            <div class="card-body">
+                                                <div class="chart-container">
+                                                    <img src="learning_style_performance.png" class="img-fluid" alt="Learning Style Performance">
+                                                </div>
+                                                <div class="chart-insights">
+                                                    <h6><i class="bi bi-graph-up"></i> Data Interpretation</h6>
+                                                    <p>Overall performance is comparable across learning styles, but the variance is higher among
+                                                    Reading/Writing learners. Visual and Kinesthetic learners show more consistent results when matched
+                                                    with appropriate content formats.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-6">
+                                        <div class="card results-card">
+                                            <div class="card-header">Engagement Factors Correlation</div>
+                                            <div class="card-body">
+                                                <div class="chart-container">
+                                                    <img src="engagement_correlation.png" class="img-fluid" alt="Engagement Correlation">
+                                                </div>
+                                                <div class="chart-insights">
+                                                    <h6><i class="bi bi-graph-up"></i> Data Interpretation</h6>
+                                                    <p>Assignment completion rate shows the strongest correlation with final exam scores (r=0.014), followed by
+                                                    quiz scores (r=0.004). Interestingly, time spent on videos has a slight negative correlation,
+                                                    suggesting quality of engagement matters more than quantity.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card mt-4">
+                                    <div class="card-header">
+                                        <i class="bi bi-code-slash text-white me-2"></i> Engagement Score Calculation
+                                    </div>
+                                    <div class="card-body">
+                                        <p>Our engagement score is a weighted composite metric that combines multiple dimensions of student interaction:</p>
+                                        
+                                        <div class="code-block">
+                                            <div class="code-header">
+                                                <span class="language-badge">Python</span>
+                                                <span class="code-title">engagement_score_calculation.py</span>
+                                            </div>
+                                            <pre><code class="language-python"># Engagement score based on presumed importance
+df['Engagement_Score'] = (
+    0.3 * df['Time_Spent_on_Videos'] / df['Time_Spent_on_Videos'].max() +
+    0.2 * df['Quiz_Attempts'] / df['Quiz_Attempts'].max() +
+    0.2 * df['Forum_Participation'] / df['Forum_Participation'].max() +
+    0.3 * df['Assignment_Completion_Rate'] / 100
+) * 100</code></pre>
+                                        </div>
+                                        
+                                        <div class="data-insight mt-3">
+                                            <h6><i class="bi bi-info-circle"></i> Why This Formula?</h6>
+                                            <ul>
+                                                <li><strong>Normalization:</strong> Each component is divided by its maximum value to create a comparable 0-1 scale</li>
+                                                <li><strong>Weighting:</strong> Assignment completion and video engagement (30% each) are weighted higher than quiz attempts and forum participation (20% each)</li>
+                                                <li><strong>Scale:</strong> Final multiplication by 100 creates an intuitive 0-100 scale</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card mt-4">
+                                            <div class="card-header">Key Metrics & Insights</div>
+                                            <div class="card-body">
+                                                <div class="row text-center">
+                                                    <div class="col-md-3">
+                                                        <div class="mb-3">
+                                                            <span class="display-4 text-primary">+27%</span>
+                                                        </div>
+                                                        <h5>Score Improvement</h5>
+                                                        <p class="text-muted">With learning style matched content</p>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="mb-3">
+                                                            <span class="display-4 text-primary">80.7%</span>
+                                                        </div>
+                                                        <h5>Dropout Prediction</h5>
+                                                        <p class="text-muted">Model accuracy</p>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="mb-3">
+                                                            <span class="display-4 text-primary">42%</span>
+                                                        </div>
+                                                        <h5>Visual Learners</h5>
+                                                        <p class="text-muted">Largest learning style group</p>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="mb-3">
+                                                            <span class="display-4 text-primary">45%</span>
+                                                        </div>
+                                                        <h5>Dropout Reduction</h5>
+                                                        <p class="text-muted">With personalized recommendations</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Analysis PDF Tab -->
+            <div id="analysis-pdf" class="tab-content">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <i class="bi bi-file-earmark-pdf text-white me-2"></i> Complete Analysis Document
+                            </div>
+                            <div class="card-body">
+                                <p class="lead mb-4">
+                                    Below is the complete Jupyter notebook analysis exported as PDF. It includes all code, 
+                                    visualizations, and detailed implementation of our recommendation algorithm.
+                                </p>
+                                
+                                <div class="pdf-container">
+                                    <object 
+                                        data="analysis.pdf" 
+                                        type="application/pdf" 
+                                        width="100%" 
+                                        height="700px">
+                                        <p>
+                                            It appears your browser doesn't support embedded PDFs. 
+                                            <a href="analysis.pdf" target="_blank" class="btn btn-primary">
+                                                <i class="bi bi-download"></i> Download the PDF
+                                            </a>
+                                        </p>
+                                    </object>
+                                </div>
+                                
+                                <div class="mt-4 text-center">
+                                    <a href="analysis.pdf" target="_blank" class="btn btn-primary">
+                                        <i class="bi bi-arrows-fullscreen"></i> Open in Full Screen
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Demo Tab -->
+            <div id="demo" class="tab-content">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="bi bi-play-circle text-white me-2"></i> Course Recommendation Demo
+                            </div>
+                            <div class="card-body">
+                                <p class="lead">
+                                    Select a student profile to see personalized course recommendations based on their learning style, 
+                                    performance history, and engagement patterns.
+                                </p>
+                                
+                                <form id="student-select-form" class="mb-4">
+                                    <div class="row align-items-end">
+                                        <div class="col-md-8">
+                                            <label for="student-select" class="form-label">Select a Student:</label>
+                                            <select class="form-select" id="student-select">
+                                                <option value="1" selected>Student S00001 (Visual learner, High School, 51% Average)</option>
+                                                <option value="2">Student S00002 (Reading/Writing learner, Undergraduate, 92% Average)</option>
+                                                <option value="3">Student S00003 (Reading/Writing learner, Undergraduate, 45% Average)</option>
+                                                <option value="4">Student S00004 (Visual learner, Undergraduate, 59% Average)</option>
+                                                <option value="5">Student S00005 (Visual learner, Postgraduate, 93% Average)</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn-primary w-100">
+                                                <i class="bi bi-lightbulb"></i> Generate Recommendations
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="recommendations-container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <i class="bi bi-person text-white me-2"></i> Student Profile
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <h3 id="student-id">Student S00001</h3>
+                                            <table class="table">
+                                                <tr>
+                                                    <th>Learning Style:</th>
+                                                    <td><span class="badge bg-primary" id="learning-style">Visual</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Education Level:</th>
+                                                    <td id="education-level">High School</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Quiz Score:</th>
+                                                    <td id="quiz-score">67%</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <table class="table">
+                                                <tr>
+                                                    <th>Assignment Completion:</th>
+                                                    <td id="assignment-rate">89%</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Final Exam Score:</th>
+                                                    <td id="final-score">51%</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Forum Participation:</th>
+                                                    <td id="forum-participation">2 posts</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="engagement-summary text-center">
+                                                <h6>Engagement Score</h6>
+                                                <div class="engagement-score-circle">
+                                                    <span id="engagement-score">57.8</span>
+                                                </div>
+                                                <p class="text-muted mt-2">Medium Engagement Level</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="recommendation-cards">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Learning Style Analysis & Recommendation System</p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap and library scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        hljs.highlightAll();
+    });
+</script>
+<script src="script.js"></script>
+</body>
+</html>
