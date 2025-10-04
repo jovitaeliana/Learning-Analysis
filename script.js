@@ -1,234 +1,84 @@
-// Tab Functionality
 function showTab(tabId) {
     document.querySelectorAll('.tab-content').forEach(tab => {
         tab.classList.remove('active');
     });
-    
-    document.getElementById(tabId).classList.add('active');
-    
+
+    const targetTab = document.getElementById(tabId);
+    if (targetTab) {
+        targetTab.classList.add('active');
+    }
+
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active');
     });
-    
-    document.querySelectorAll('.nav-link').forEach(link => {
-        if (link.getAttribute('href').includes(tabId)) {
-            link.classList.add('active');
-        }
+
+    const activeLink = Array.from(document.querySelectorAll('.nav-link')).find(link => {
+        return link.getAttribute('onclick') && link.getAttribute('onclick').includes(tabId);
     });
+
+    if (activeLink) {
+        activeLink.classList.add('active');
+    }
 }
 
-const students = {
-    '1': {
-        id: 'Student S00001',
-        learningStyle: 'Visual',
-        educationLevel: 'High School',
-        quizScore: '67%',
-        assignmentRate: '89%',
-        finalScore: '51%',
-        forumParticipation: '2 posts',
-        engagementScore: '57.8',
-        recommendations: [
-            {
-                title: 'Python Basics',
-                description: 'This course aligns with your Visual learning style, provides a good foundation to strengthen your knowledge.',
-                overallScore: '0.64',
-                styleScore: '0.63',
-                contentScore: '0.50',
-                difficultyScore: '0.82',
-                engagementScore: '0.64',
-                dataInsight: 'Visual learners with your profile show 18% higher completion rates in this course.'
-            },
-            {
-                title: 'Data Science',
-                description: 'This course aligns with your Visual learning style, has an intermediate difficulty level appropriate for your performance.',
-                overallScore: '0.62',
-                styleScore: '0.66',
-                contentScore: '0.50',
-                difficultyScore: '0.84',
-                engagementScore: '0.44',
-                dataInsight: 'Students with similar assessment profiles improved their scores by 23% in this course.'
-            },
-            {
-                title: 'AI Ethics',
-                description: 'This course has an intermediate difficulty level appropriate for your performance.',
-                overallScore: '0.53',
-                styleScore: '0.50',
-                contentScore: '0.50',
-                difficultyScore: '0.84',
-                engagementScore: '0.24',
-                dataInsight: 'This course offers diverse learning formats that accommodate different learning styles.'
+let students = {};
+let resultsData = null;
+
+function buildStudentsFromResults(data) {
+    const sampleStudents = data?.sample_students || {};
+    const sampleRecs = data?.sample_recommendations || {};
+    const map = {};
+    const ids = Object.keys(sampleStudents).sort();
+
+    ids.forEach((sid, idx) => {
+        const p = sampleStudents[sid];
+        const weights = sampleRecs[sid]?.weights || {
+            style: 0.35,
+            content: 0.25,
+            difficulty: 0.20,
+            engagement: 0.20
+        };
+
+        const recs = (sampleRecs[sid]?.recommendations || []).map(r => ({
+            title: r.title,
+            description: r.description,
+            overallScore: (r.overallScore ?? 0).toFixed(2),
+            styleScore: (r.styleScore ?? 0).toFixed(2),
+            contentScore: (r.contentScore ?? 0).toFixed(2),
+            difficultyScore: (r.difficultyScore ?? 0).toFixed(2),
+            engagementScore: (r.engagementScore ?? 0).toFixed(2),
+            attributions: r.attributions || {
+                style: (weights.style * (parseFloat(r.styleScore) || 0)).toFixed(3),
+                content: (weights.content * (parseFloat(r.contentScore) || 0)).toFixed(3),
+                difficulty: (weights.difficulty * (parseFloat(r.difficultyScore) || 0)).toFixed(3),
+                engagement: (weights.engagement * (parseFloat(r.engagementScore) || 0)).toFixed(3)
             }
-        ]
-    },
-    '2': {
-        id: 'Student S00002',
-        learningStyle: 'Reading/Writing',
-        educationLevel: 'Undergraduate',
-        quizScore: '64%',
-        assignmentRate: '94%',
-        finalScore: '92%',
-        forumParticipation: '0 posts',
-        engagementScore: '57.6',
-        recommendations: [
-            {
-                title: 'Machine Learning',
-                description: 'This course aligns with your Reading/Writing learning style, has an intermediate difficulty level appropriate for your performance.',
-                overallScore: '0.59',
-                styleScore: '0.63',
-                contentScore: '0.50',
-                difficultyScore: '0.75',
-                engagementScore: '0.40',
-                dataInsight: 'Reading/Writing learners with strong performance show 91% satisfaction with this course.'
-            },
-            {
-                title: 'Data Science',
-                description: 'This course aligns with your Reading/Writing learning style, has an intermediate difficulty level appropriate for your performance.',
-                overallScore: '0.58',
-                styleScore: '0.62',
-                contentScore: '0.50',
-                difficultyScore: '0.75',
-                engagementScore: '0.40',
-                dataInsight: 'Students with similar profiles improved their quiz scores by 12% in this course.'
-            },
-            {
-                title: 'Deep Learning',
-                description: 'This course offers an appropriate challenge given your strong performance history.',
-                overallScore: '0.57',
-                styleScore: '0.50',
-                contentScore: '0.50',
-                difficultyScore: '0.92',
-                engagementScore: '0.40',
-                dataInsight: 'Top-performing students often choose this course to further enhance their skills.'
-            }
-        ]
-    },
-    '3': {
-        id: 'Student S00003',
-        learningStyle: 'Reading/Writing',
-        educationLevel: 'Undergraduate',
-        quizScore: '55%',
-        assignmentRate: '67%',
-        finalScore: '45%',
-        forumParticipation: '2 posts',
-        engagementScore: '44.0',
-        recommendations: [
-            {
-                title: 'Machine Learning',
-                description: 'This course aligns with your Reading/Writing learning style, has an intermediate difficulty level appropriate for your performance.',
-                overallScore: '0.60',
-                styleScore: '0.63',
-                contentScore: '0.50',
-                difficultyScore: '0.78',
-                engagementScore: '0.44',
-                dataInsight: 'Students with similar performance profiles improved by 25% after taking this course.'
-            },
-            {
-                title: 'Data Science',
-                description: 'This course aligns with your Reading/Writing learning style, has an intermediate difficulty level appropriate for your performance.',
-                overallScore: '0.60',
-                styleScore: '0.62',
-                contentScore: '0.50',
-                difficultyScore: '0.78',
-                engagementScore: '0.44',
-                dataInsight: 'This course provides gradual progression, ideal for building foundational knowledge.'
-            },
-            {
-                title: 'AI Ethics',
-                description: 'This course has an intermediate difficulty level appropriate for your performance.',
-                overallScore: '0.52',
-                styleScore: '0.50',
-                contentScore: '0.50',
-                difficultyScore: '0.78',
-                engagementScore: '0.24',
-                dataInsight: 'Discussion-based components may help increase your forum participation.'
-            }
-        ]
-    },
-    '4': {
-        id: 'Student S00004',
-        learningStyle: 'Visual',
-        educationLevel: 'Undergraduate',
-        quizScore: '65%',
-        assignmentRate: '60%',
-        finalScore: '59%',
-        forumParticipation: '43 posts',
-        engagementScore: '69.9',
-        recommendations: [
-            {
-                title: 'Machine Learning',
-                description: 'This course aligns with your Visual learning style, has an intermediate difficulty level appropriate for your performance, includes collaboration components that match your engagement preferences.',
-                overallScore: '0.68',
-                styleScore: '0.65',
-                contentScore: '0.50',
-                difficultyScore: '0.92',
-                engagementScore: '0.74',
-                dataInsight: "Your high forum participation suggests you'd benefit from this course's collaborative elements."
-            },
-            {
-                title: 'AI Ethics',
-                description: 'This course has an intermediate difficulty level appropriate for your performance, includes collaboration components that match your engagement preferences.',
-                overallScore: '0.65',
-                styleScore: '0.50',
-                contentScore: '0.50',
-                difficultyScore: '0.92',
-                engagementScore: '0.94',
-                dataInsight: 'Students with high forum participation excel in this discussion-oriented course.'
-            },
-            {
-                title: 'Python Basics',
-                description: 'This course aligns with your Visual learning style, provides a good foundation to strengthen your knowledge.',
-                overallScore: '0.61',
-                styleScore: '0.63',
-                contentScore: '0.50',
-                difficultyScore: '0.74',
-                engagementScore: '0.54',
-                dataInsight: 'Visual learners show 27% higher retention of programming concepts in this course.'
-            }
-        ]
-    },
-    '5': {
-        id: 'Student S00005',
-        learningStyle: 'Visual',
-        educationLevel: 'Postgraduate',
-        quizScore: '59%',
-        assignmentRate: '88%',
-        finalScore: '93%',
-        forumParticipation: '34 posts',
-        engagementScore: '85.1',
-        recommendations: [
-            {
-                title: 'Data Science',
-                description: 'This course aligns with your Visual learning style, has an intermediate difficulty level appropriate for your performance, includes collaboration components that match your engagement preferences.',
-                overallScore: '0.67',
-                styleScore: '0.66',
-                contentScore: '0.50',
-                difficultyScore: '0.74',
-                engagementScore: '0.92',
-                dataInsight: 'Postgraduate visual learners consistently rate this course highly (4.8/5).'
-            },
-            {
-                title: 'Machine Learning',
-                description: 'This course aligns with your Visual learning style, has an intermediate difficulty level appropriate for your performance, includes collaboration components that match your engagement preferences.',
-                overallScore: '0.67',
-                styleScore: '0.65',
-                contentScore: '0.50',
-                difficultyScore: '0.74',
-                engagementScore: '0.92',
-                dataInsight: "Your strong performance and engagement profile suggests you'll excel in this course."
-            },
-            {
-                title: 'Deep Learning',
-                description: 'This course offers an appropriate challenge given your strong performance history, includes collaboration components that match your engagement preferences.',
-                overallScore: '0.65',
-                styleScore: '0.50',
-                contentScore: '0.50',
-                difficultyScore: '0.93',
-                engagementScore: '0.92',
-                dataInsight: 'High-performing postgraduate students typically select this as their next course.'
-            }
-        ]
-    }
-};
+        }));
+
+        map[String(idx + 1)] = {
+            id: `Student ${sid}`,
+            learningStyle: p.Learning_Style || '—',
+            educationLevel: p.Education_Level || '—',
+            quizScore: (p.Quiz_Scores != null ? `${Math.round(p.Quiz_Scores)}%` : '—'),
+            assignmentRate: (p.Assignment_Completion_Rate != null ? `${Math.round(p.Assignment_Completion_Rate)}%` : '—'),
+            finalScore: (p.Final_Exam_Score != null ? `${Math.round(p.Final_Exam_Score)}%` : '—'),
+            forumParticipation: (p.Forum_Participation != null ? `${Math.round(p.Forum_Participation)} posts` : '—'),
+            engagementScore: (p.Engagement_Score != null ? p.Engagement_Score.toFixed(1) : '—'),
+            recommendations: recs,
+            weights
+        };
+    });
+
+    return map;
+}
+
+function refreshDiagVisibility() {
+    const toggle = document.getElementById('toggle-diag');
+    const show = !!(toggle && toggle.checked);
+    document.querySelectorAll('.diag-details').forEach(el => {
+        el.style.display = show ? 'block' : 'none';
+    });
+}
 
 function updateStudentProfile(student) {
     document.getElementById('student-id').textContent = student.id;
@@ -239,32 +89,29 @@ function updateStudentProfile(student) {
     document.getElementById('final-score').textContent = student.finalScore;
     document.getElementById('forum-participation').textContent = student.forumParticipation;
     document.getElementById('engagement-score').textContent = student.engagementScore;
-    
-    // Clear existing recommendations
+
     const recommendationCards = document.getElementById('recommendation-cards');
     recommendationCards.innerHTML = '';
-    
-    // lead text
-    const leadText = document.createElement('div');
-    leadText.className = 'row';
-    leadText.innerHTML = `
+
+    const header = document.createElement('div');
+    header.className = 'row mt-4';
+    header.innerHTML = `
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <i class="bi bi-lightbulb text-white me-2"></i> Personalized Course Recommendations
+                    <i class="bi bi-stars me-2"></i>Personalized Course Recommendations
                 </div>
                 <div class="card-body">
-                    <p class="lead mb-4">
-                        Based on ${student.learningStyle} learning style, ${student.educationLevel} education level, and ${student.engagementScore} engagement score, 
-                        we recommend:
+                    <p class="lead mb-0">
+                        Based on ${student.learningStyle} learning style and ${student.engagementScore} engagement score,
+                        our ML-powered system recommends the following courses:
                     </p>
                 </div>
             </div>
         </div>
     `;
-    recommendationCards.appendChild(leadText);
-    
-    // recommendation cards
+    recommendationCards.appendChild(header);
+
     student.recommendations.forEach((rec, index) => {
         const card = document.createElement('div');
         card.className = 'row mt-3';
@@ -273,55 +120,79 @@ function updateStudentProfile(student) {
                 <div class="card recommendation-card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-8">
-                                <h4>#${index+1}: ${rec.title}</h4>
-                                <p>${rec.description}</p>
-                                <div class="data-insight-sm mt-3">
-                                    <h6><i class="bi bi-graph-up-arrow"></i> Data Insight</h6>
-                                    <p>${rec.dataInsight}</p>
+                            <div class="col-lg-7">
+                                <h4>#${index + 1}: ${rec.title}</h4>
+                                <p class="mb-3">${rec.description}</p>
+
+                                <div class="diag-details" style="display: none;">
+                                    <h6 class="mt-3 mb-2"><i class="bi bi-gear me-2"></i>Technical Details</h6>
+                                    <div class="row g-2">
+                                        <div class="col-6">
+                                            <small class="text-muted">Model Weights:</small>
+                                            <div class="small">
+                                                Style: ${student.weights?.style ?? '0.35'} |
+                                                Content: ${student.weights?.content ?? '0.25'} |
+                                                Difficulty: ${student.weights?.difficulty ?? '0.20'} |
+                                                Engagement: ${student.weights?.engagement ?? '0.20'}
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <small class="text-muted">Weighted Contributions:</small>
+                                            <div class="small">
+                                                Style: ${rec.attributions?.style ?? '-'} |
+                                                Content: ${rec.attributions?.content ?? '-'} |
+                                                Difficulty: ${rec.attributions?.difficulty ?? '-'} |
+                                                Engagement: ${rec.attributions?.engagement ?? '-'}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="d-flex flex-column">
-                                    <div class="mb-3 text-center">
-                                        <div class="score-value">${rec.overallScore}</div>
-                                        <div class="score-label">Overall Match</div>
+                            <div class="col-lg-5">
+                                <div class="mb-4 text-center">
+                                    <div style="font-size: 2.5rem; font-weight: 700; color: var(--primary);">
+                                        ${rec.overallScore}
                                     </div>
-                                    
-                                    <div class="progress mb-2">
-                                        <div class="progress-bar bg-primary" role="progressbar" 
-                                             style="width: ${parseFloat(rec.styleScore)*100}%"></div>
-                                    </div>
-                                    <div class="d-flex justify-content-between mb-2">
+                                    <div class="text-muted small">Overall Match Score</div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
                                         <small>Learning Style Match</small>
-                                        <small>${rec.styleScore}</small>
+                                        <small><strong>${rec.styleScore}</strong></small>
                                     </div>
-                                    
-                                    <div class="progress mb-2">
-                                        <div class="progress-bar bg-info" role="progressbar" 
-                                             style="width: ${parseFloat(rec.contentScore)*100}%"></div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-primary" style="width: ${parseFloat(rec.styleScore) * 100}%"></div>
                                     </div>
-                                    <div class="d-flex justify-content-between mb-2">
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
                                         <small>Content Relevance</small>
-                                        <small>${rec.contentScore}</small>
+                                        <small><strong>${rec.contentScore}</strong></small>
                                     </div>
-                                    
-                                    <div class="progress mb-2">
-                                        <div class="progress-bar bg-success" role="progressbar" 
-                                             style="width: ${parseFloat(rec.difficultyScore)*100}%"></div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" style="width: ${parseFloat(rec.contentScore) * 100}%"></div>
                                     </div>
-                                    <div class="d-flex justify-content-between mb-2">
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between mb-1">
                                         <small>Difficulty Match</small>
-                                        <small>${rec.difficultyScore}</small>
+                                        <small><strong>${rec.difficultyScore}</strong></small>
                                     </div>
-                                    
-                                    <div class="progress mb-2">
-                                        <div class="progress-bar bg-warning" role="progressbar" 
-                                             style="width: ${parseFloat(rec.engagementScore)*100}%"></div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" style="width: ${parseFloat(rec.difficultyScore) * 100}%"></div>
                                     </div>
-                                    <div class="d-flex justify-content-between mb-2">
+                                </div>
+
+                                <div class="mb-0">
+                                    <div class="d-flex justify-content-between mb-1">
                                         <small>Engagement Potential</small>
-                                        <small>${rec.engagementScore}</small>
+                                        <small><strong>${rec.engagementScore}</strong></small>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-warning" style="width: ${parseFloat(rec.engagementScore) * 100}%"></div>
                                     </div>
                                 </div>
                             </div>
@@ -332,27 +203,142 @@ function updateStudentProfile(student) {
         `;
         recommendationCards.appendChild(card);
     });
+
+    refreshDiagVisibility();
 }
 
-// Select student profile in demo
-function selectStudent(studentId) {
-    document.getElementById('student-select').value = studentId;
-    updateStudentProfile(students[studentId]);
+function updateDashboardMetrics(data) {
+    const stats = data?.stats || {};
+    const dropout = data?.dropout_cv || {};
+    const topStyle = data?.top_learning_style || {};
+    const correlations = data?.correlations?.engagement_vs_final || {};
+
+    if (document.getElementById('hero-students')) {
+        document.getElementById('hero-students').textContent = (stats.num_students || 10000).toLocaleString();
+    }
+    if (document.getElementById('hero-courses')) {
+        document.getElementById('hero-courses').textContent = stats.num_courses || 5;
+    }
+    if (document.getElementById('hero-accuracy')) {
+        document.getElementById('hero-accuracy').textContent = dropout.accuracy_mean
+            ? `${(dropout.accuracy_mean * 100).toFixed(1)}%`
+            : '80.4%';
+    }
+
+    if (document.getElementById('dataset-size')) {
+        document.getElementById('dataset-size').textContent = (stats.dataset_size || 10000).toLocaleString();
+    }
+    if (document.getElementById('course-count')) {
+        document.getElementById('course-count').textContent = stats.num_courses || 5;
+    }
+    if (document.getElementById('learning-style-count')) {
+        document.getElementById('learning-style-count').textContent = stats.num_learning_styles || 4;
+    }
+    if (document.getElementById('dropout-rate')) {
+        const dropoutRate = dropout.class_distribution?.positive;
+        document.getElementById('dropout-rate').textContent = dropoutRate
+            ? `${(dropoutRate * 100).toFixed(1)}%`
+            : '19.6%';
+    }
+    if (document.getElementById('top-style-pct')) {
+        document.getElementById('top-style-pct').textContent = topStyle.pct
+            ? `${(topStyle.pct * 100).toFixed(0)}%`
+            : '—';
+    }
+    if (document.getElementById('top-style-name')) {
+        document.getElementById('top-style-name').textContent = topStyle.name || 'Reading/Writing';
+    }
+
+    if (document.getElementById('corr-pearson-display')) {
+        document.getElementById('corr-pearson-display').textContent =
+            correlations.pearson !== undefined ? correlations.pearson.toFixed(3) : '—';
+    }
+    if (document.getElementById('corr-spearman-display')) {
+        document.getElementById('corr-spearman-display').textContent =
+            correlations.spearman !== undefined ? correlations.spearman.toFixed(3) : '—';
+    }
+
+    if (document.getElementById('model-accuracy')) {
+        document.getElementById('model-accuracy').textContent = dropout.accuracy_mean
+            ? `${(dropout.accuracy_mean * 100).toFixed(1)}%`
+            : '—';
+    }
+    if (document.getElementById('model-roc')) {
+        document.getElementById('model-roc').textContent = dropout.roc_auc_mean
+            ? dropout.roc_auc_mean.toFixed(3)
+            : '—';
+    }
+    if (document.getElementById('model-pr')) {
+        document.getElementById('model-pr').textContent = dropout.pr_auc_mean
+            ? dropout.pr_auc_mean.toFixed(3)
+            : '—';
+    }
+    if (document.getElementById('model-folds')) {
+        document.getElementById('model-folds').textContent = dropout.folds || 5;
+    }
 }
 
-// Initialize the page
-document.addEventListener('DOMContentLoaded', function() {
-    // Handle demo form submission
+document.addEventListener('DOMContentLoaded', async function() {
+    console.log('KINEX Learning Analytics Platform initializing...');
+
+    try {
+        const response = await fetch('results.json', { cache: 'no-store' });
+        if (response.ok) {
+            resultsData = await response.json();
+            console.log('Results data loaded successfully');
+
+            updateDashboardMetrics(resultsData);
+
+            students = buildStudentsFromResults(resultsData);
+            console.log(`Loaded ${Object.keys(students).length} students`);
+
+            const selectEl = document.getElementById('student-select');
+            if (selectEl) {
+                selectEl.innerHTML = '';
+                Object.keys(students).forEach(key => {
+                    const opt = document.createElement('option');
+                    opt.value = key;
+                    opt.textContent = students[key].id;
+                    selectEl.appendChild(opt);
+                });
+
+                if (Object.keys(students).length > 0) {
+                    selectEl.value = '1';
+                }
+            }
+
+            if (students['1']) {
+                updateStudentProfile(students['1']);
+            }
+        } else {
+            console.error('Failed to load results.json');
+        }
+    } catch (error) {
+        console.error('Error loading results.json:', error);
+    }
+
+    const toggle = document.getElementById('toggle-diag');
+    if (toggle) {
+        toggle.addEventListener('change', refreshDiagVisibility);
+    }
+
     const studentForm = document.getElementById('student-select-form');
-    studentForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const studentId = document.getElementById('student-select').value;
-        updateStudentProfile(students[studentId]);
-    });
-    
-    // Initialize with first student
-    updateStudentProfile(students['1']);
-    
-    // Show overview tab by default
+    if (studentForm) {
+        studentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const studentId = document.getElementById('student-select').value;
+            if (students[studentId]) {
+                updateStudentProfile(students[studentId]);
+
+                document.getElementById('recommendations-container').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+
     showTab('overview');
+
+    console.log('KINEX initialization complete');
 });

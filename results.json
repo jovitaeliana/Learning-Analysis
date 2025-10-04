@@ -1,0 +1,508 @@
+{
+  "stats": {
+    "dataset_size": 10000,
+    "num_students": 10000,
+    "num_courses": 5,
+    "num_learning_styles": 4
+  },
+  "top_learning_style": {
+    "name": "Reading/Writing",
+    "pct": 0.2554
+  },
+  "correlations": {
+    "engagement_vs_final": {
+      "pearson": -0.009448954473767679,
+      "spearman": -0.008887576404775393
+    }
+  },
+  "dropout_cv": {
+    "accuracy_mean": 0.8043000000000001,
+    "accuracy_std": 0.00024494897427829084,
+    "roc_auc_mean": 0.49762950347672924,
+    "roc_auc_std": 0.01478030676281936,
+    "pr_auc_mean": 0.19805806862362785,
+    "pr_auc_std": 0.007552932235088537,
+    "folds": 5,
+    "class_distribution": {
+      "positive": 0.1957,
+      "negative": 0.8043
+    }
+  },
+  "validation": {
+    "issues": [],
+    "duplicate_ratio": 0.0
+  },
+  "diagnostics": {
+    "course_style_means": [
+      {
+        "Course_Name": "Cybersecurity",
+        "Learning_Style": "Auditory",
+        "mean_final": 64.3796992481203,
+        "mean_quiz": 65.42293233082707,
+        "mean_assign": 69.01127819548873
+      },
+      {
+        "Course_Name": "Cybersecurity",
+        "Learning_Style": "Kinesthetic",
+        "mean_final": 64.91269841269842,
+        "mean_quiz": 64.81150793650794,
+        "mean_assign": 70.20238095238095
+      },
+      {
+        "Course_Name": "Cybersecurity",
+        "Learning_Style": "Reading/Writing",
+        "mean_final": 64.69277108433735,
+        "mean_quiz": 64.21084337349397,
+        "mean_assign": 69.70682730923694
+      },
+      {
+        "Course_Name": "Cybersecurity",
+        "Learning_Style": "Visual",
+        "mean_final": 64.91666666666667,
+        "mean_quiz": 65.20121951219512,
+        "mean_assign": 70.1951219512195
+      },
+      {
+        "Course_Name": "Data Science",
+        "Learning_Style": "Auditory",
+        "mean_final": 65.06694560669456,
+        "mean_quiz": 63.44769874476987,
+        "mean_assign": 69.47071129707113
+      },
+      {
+        "Course_Name": "Data Science",
+        "Learning_Style": "Kinesthetic",
+        "mean_final": 65.48983739837398,
+        "mean_quiz": 64.54065040650407,
+        "mean_assign": 68.6280487804878
+      },
+      {
+        "Course_Name": "Data Science",
+        "Learning_Style": "Reading/Writing",
+        "mean_final": 62.262645914396884,
+        "mean_quiz": 66.06420233463035,
+        "mean_assign": 68.61867704280155
+      },
+      {
+        "Course_Name": "Data Science",
+        "Learning_Style": "Visual",
+        "mean_final": 65.502,
+        "mean_quiz": 64.184,
+        "mean_assign": 69.472
+      },
+      {
+        "Course_Name": "Machine Learning",
+        "Learning_Style": "Auditory",
+        "mean_final": 65.16167664670658,
+        "mean_quiz": 64.57485029940119,
+        "mean_assign": 68.69261477045909
+      },
+      {
+        "Course_Name": "Machine Learning",
+        "Learning_Style": "Kinesthetic",
+        "mean_final": 63.75,
+        "mean_quiz": 66.25635593220339,
+        "mean_assign": 71.14406779661017
+      },
+      {
+        "Course_Name": "Machine Learning",
+        "Learning_Style": "Reading/Writing",
+        "mean_final": 63.42037037037037,
+        "mean_quiz": 65.27407407407408,
+        "mean_assign": 68.1037037037037
+      },
+      {
+        "Course_Name": "Machine Learning",
+        "Learning_Style": "Visual",
+        "mean_final": 65.06792452830189,
+        "mean_quiz": 63.74528301886792,
+        "mean_assign": 69.42830188679245
+      },
+      {
+        "Course_Name": "Python Basics",
+        "Learning_Style": "Auditory",
+        "mean_final": 66.17463617463618,
+        "mean_quiz": 62.78586278586278,
+        "mean_assign": 70.05613305613305
+      },
+      {
+        "Course_Name": "Python Basics",
+        "Learning_Style": "Kinesthetic",
+        "mean_final": 64.95436507936508,
+        "mean_quiz": 64.93650793650794,
+        "mean_assign": 69.41468253968254
+      },
+      {
+        "Course_Name": "Python Basics",
+        "Learning_Style": "Reading/Writing",
+        "mean_final": 64.60446247464503,
+        "mean_quiz": 65.40162271805274,
+        "mean_assign": 70.20081135902637
+      },
+      {
+        "Course_Name": "Python Basics",
+        "Learning_Style": "Visual",
+        "mean_final": 63.39341085271318,
+        "mean_quiz": 64.35658914728683,
+        "mean_assign": 69.72868217054264
+      },
+      {
+        "Course_Name": "Web Development",
+        "Learning_Style": "Auditory",
+        "mean_final": 64.8559670781893,
+        "mean_quiz": 63.5,
+        "mean_assign": 69.57613168724279
+      },
+      {
+        "Course_Name": "Web Development",
+        "Learning_Style": "Kinesthetic",
+        "mean_final": 66.53715498938429,
+        "mean_quiz": 64.49256900212315,
+        "mean_assign": 69.73036093418258
+      },
+      {
+        "Course_Name": "Web Development",
+        "Learning_Style": "Reading/Writing",
+        "mean_final": 64.45776031434184,
+        "mean_quiz": 63.87426326129666,
+        "mean_assign": 69.39292730844794
+      },
+      {
+        "Course_Name": "Web Development",
+        "Learning_Style": "Visual",
+        "mean_final": 64.69404517453799,
+        "mean_quiz": 64.35934291581108,
+        "mean_assign": 70.48665297741273
+      }
+    ]
+  },
+  "sample_students": {
+    "S00001": {
+      "Student_ID": "S00001",
+      "Learning_Style": "Visual",
+      "Education_Level": "High School",
+      "Quiz_Scores": 67.0,
+      "Assignment_Completion_Rate": 89.0,
+      "Final_Exam_Score": 51.0,
+      "Forum_Participation": 2.0,
+      "Engagement_Score": 53.64121974696111
+    },
+    "S00002": {
+      "Student_ID": "S00002",
+      "Learning_Style": "Reading/Writing",
+      "Education_Level": "Undergraduate",
+      "Quiz_Scores": 64.0,
+      "Assignment_Completion_Rate": 94.0,
+      "Final_Exam_Score": 92.0,
+      "Forum_Participation": 0.0,
+      "Engagement_Score": 54.11292113995251
+    },
+    "S00003": {
+      "Student_ID": "S00003",
+      "Learning_Style": "Reading/Writing",
+      "Education_Level": "Undergraduate",
+      "Quiz_Scores": 55.0,
+      "Assignment_Completion_Rate": 67.0,
+      "Final_Exam_Score": 45.0,
+      "Forum_Participation": 2.0,
+      "Engagement_Score": 23.444144605219005
+    },
+    "S00004": {
+      "Student_ID": "S00004",
+      "Learning_Style": "Visual",
+      "Education_Level": "Undergraduate",
+      "Quiz_Scores": 65.0,
+      "Assignment_Completion_Rate": 60.0,
+      "Final_Exam_Score": 59.0,
+      "Forum_Participation": 43.0,
+      "Engagement_Score": 62.10214371502118
+    },
+    "S00005": {
+      "Student_ID": "S00005",
+      "Learning_Style": "Visual",
+      "Education_Level": "Postgraduate",
+      "Quiz_Scores": 59.0,
+      "Assignment_Completion_Rate": 88.0,
+      "Final_Exam_Score": 93.0,
+      "Forum_Participation": 34.0,
+      "Engagement_Score": 93.31589203724585
+    }
+  },
+  "sample_recommendations": {
+    "S00001": {
+      "recommendations": [
+        {
+          "title": "Data Science",
+          "description": "Recommended based on your Visual learning style and performance profile.",
+          "overallScore": 0.897,
+          "styleScore": 1.0,
+          "contentScore": 0.9673,
+          "difficultyScore": 0.8314,
+          "engagementScore": 0.6947,
+          "attributions": {
+            "style": 0.35,
+            "content": 0.2418,
+            "difficulty": 0.1663,
+            "engagement": 0.1389
+          }
+        },
+        {
+          "title": "Machine Learning",
+          "description": "Recommended based on your Visual learning style and performance profile.",
+          "overallScore": 0.8309,
+          "styleScore": 0.7941,
+          "contentScore": 0.9894,
+          "difficultyScore": 0.8339,
+          "engagementScore": 0.6943,
+          "attributions": {
+            "style": 0.2779,
+            "content": 0.2474,
+            "difficulty": 0.1668,
+            "engagement": 0.1389
+          }
+        },
+        {
+          "title": "Cybersecurity",
+          "description": "Recommended based on your Visual learning style and performance profile.",
+          "overallScore": 0.7994,
+          "styleScore": 0.7224,
+          "contentScore": 0.9613,
+          "difficultyScore": 0.8293,
+          "engagementScore": 0.702,
+          "attributions": {
+            "style": 0.2528,
+            "content": 0.2403,
+            "difficulty": 0.1659,
+            "engagement": 0.1404
+          }
+        }
+      ],
+      "weights": {
+        "style": 0.35,
+        "content": 0.25,
+        "difficulty": 0.2,
+        "engagement": 0.2
+      }
+    },
+    "S00002": {
+      "recommendations": [
+        {
+          "title": "Cybersecurity",
+          "description": "Recommended based on your Reading/Writing learning style and performance profile.",
+          "overallScore": 0.867,
+          "styleScore": 1.0,
+          "contentScore": 0.9818,
+          "difficultyScore": 0.6606,
+          "engagementScore": 0.6971,
+          "attributions": {
+            "style": 0.35,
+            "content": 0.2454,
+            "difficulty": 0.1321,
+            "engagement": 0.1394
+          }
+        },
+        {
+          "title": "Python Basics",
+          "description": "Recommended based on your Reading/Writing learning style and performance profile.",
+          "overallScore": 0.8585,
+          "styleScore": 0.9637,
+          "contentScore": 0.9942,
+          "difficultyScore": 0.6611,
+          "engagementScore": 0.702,
+          "attributions": {
+            "style": 0.3373,
+            "content": 0.2486,
+            "difficulty": 0.1322,
+            "engagement": 0.1404
+          }
+        },
+        {
+          "title": "Web Development",
+          "description": "Recommended based on your Reading/Writing learning style and performance profile.",
+          "overallScore": 0.8378,
+          "styleScore": 0.9033,
+          "contentScore": 0.9988,
+          "difficultyScore": 0.6656,
+          "engagementScore": 0.6939,
+          "attributions": {
+            "style": 0.3162,
+            "content": 0.2497,
+            "difficulty": 0.1331,
+            "engagement": 0.1388
+          }
+        }
+      ],
+      "weights": {
+        "style": 0.35,
+        "content": 0.25,
+        "difficulty": 0.2,
+        "engagement": 0.2
+      }
+    },
+    "S00003": {
+      "recommendations": [
+        {
+          "title": "Cybersecurity",
+          "description": "Recommended based on your Reading/Writing learning style and performance profile.",
+          "overallScore": 0.8581,
+          "styleScore": 1.0,
+          "contentScore": 0.8709,
+          "difficultyScore": 0.7547,
+          "engagementScore": 0.6971,
+          "attributions": {
+            "style": 0.35,
+            "content": 0.2177,
+            "difficulty": 0.1509,
+            "engagement": 0.1394
+          }
+        },
+        {
+          "title": "Python Basics",
+          "description": "Recommended based on your Reading/Writing learning style and performance profile.",
+          "overallScore": 0.8494,
+          "styleScore": 0.9637,
+          "contentScore": 0.8833,
+          "difficultyScore": 0.7542,
+          "engagementScore": 0.702,
+          "attributions": {
+            "style": 0.3373,
+            "content": 0.2208,
+            "difficulty": 0.1508,
+            "engagement": 0.1404
+          }
+        },
+        {
+          "title": "Web Development",
+          "description": "Recommended based on your Reading/Writing learning style and performance profile.",
+          "overallScore": 0.8274,
+          "styleScore": 0.9033,
+          "contentScore": 0.8903,
+          "difficultyScore": 0.7497,
+          "engagementScore": 0.6939,
+          "attributions": {
+            "style": 0.3162,
+            "content": 0.2226,
+            "difficulty": 0.1499,
+            "engagement": 0.1388
+          }
+        }
+      ],
+      "weights": {
+        "style": 0.35,
+        "content": 0.25,
+        "difficulty": 0.2,
+        "engagement": 0.2
+      }
+    },
+    "S00004": {
+      "recommendations": [
+        {
+          "title": "Data Science",
+          "description": "Recommended based on your Visual learning style and performance profile.",
+          "overallScore": 0.9246,
+          "styleScore": 1.0,
+          "contentScore": 0.9978,
+          "difficultyScore": 0.9309,
+          "engagementScore": 0.6947,
+          "attributions": {
+            "style": 0.35,
+            "content": 0.2495,
+            "difficulty": 0.1862,
+            "engagement": 0.1389
+          }
+        },
+        {
+          "title": "Machine Learning",
+          "description": "Recommended based on your Visual learning style and performance profile.",
+          "overallScore": 0.8503,
+          "styleScore": 0.7941,
+          "contentScore": 0.9871,
+          "difficultyScore": 0.9334,
+          "engagementScore": 0.6943,
+          "attributions": {
+            "style": 0.2779,
+            "content": 0.2468,
+            "difficulty": 0.1867,
+            "engagement": 0.1389
+          }
+        },
+        {
+          "title": "Cybersecurity",
+          "description": "Recommended based on your Visual learning style and performance profile.",
+          "overallScore": 0.8275,
+          "styleScore": 0.7224,
+          "contentScore": 0.9941,
+          "difficultyScore": 0.9288,
+          "engagementScore": 0.702,
+          "attributions": {
+            "style": 0.2528,
+            "content": 0.2485,
+            "difficulty": 0.1858,
+            "engagement": 0.1404
+          }
+        }
+      ],
+      "weights": {
+        "style": 0.35,
+        "content": 0.25,
+        "difficulty": 0.2,
+        "engagement": 0.2
+      }
+    },
+    "S00005": {
+      "recommendations": [
+        {
+          "title": "Data Science",
+          "description": "Recommended based on your Visual learning style and performance profile.",
+          "overallScore": 0.8516,
+          "styleScore": 1.0,
+          "contentScore": 0.9337,
+          "difficultyScore": 0.6461,
+          "engagementScore": 0.6947,
+          "attributions": {
+            "style": 0.35,
+            "content": 0.2334,
+            "difficulty": 0.1292,
+            "engagement": 0.1389
+          }
+        },
+        {
+          "title": "Machine Learning",
+          "description": "Recommended based on your Visual learning style and performance profile.",
+          "overallScore": 0.7746,
+          "styleScore": 0.7941,
+          "contentScore": 0.9165,
+          "difficultyScore": 0.6436,
+          "engagementScore": 0.6943,
+          "attributions": {
+            "style": 0.2779,
+            "content": 0.2291,
+            "difficulty": 0.1287,
+            "engagement": 0.1389
+          }
+        },
+        {
+          "title": "Cybersecurity",
+          "description": "Recommended based on your Visual learning style and performance profile.",
+          "overallScore": 0.7544,
+          "styleScore": 0.7224,
+          "contentScore": 0.926,
+          "difficultyScore": 0.6482,
+          "engagementScore": 0.702,
+          "attributions": {
+            "style": 0.2528,
+            "content": 0.2315,
+            "difficulty": 0.1296,
+            "engagement": 0.1404
+          }
+        }
+      ],
+      "weights": {
+        "style": 0.35,
+        "content": 0.25,
+        "difficulty": 0.2,
+        "engagement": 0.2
+      }
+    }
+  }
+}
